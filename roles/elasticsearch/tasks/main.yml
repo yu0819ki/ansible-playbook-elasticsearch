@@ -1,0 +1,14 @@
+---
+- name: check distribute
+  fail: msg='this tasks support for CentOS 6.x only. Your distribution is {{ ansible_distribution }} {{ ansible_distribution_version }}'
+  when: ansible_distribution_version|truncate(1, True, '') != '6'
+- name: install java
+  yum: name={{ java_package | default('java-1.7.0-openjdk.x86_64') }} state=present
+- name: put yum.repo
+  copy: src=etc/yum.repos.d/elasticsearch-1.3.repo dest=/etc/yum.repos.d/elasticsearch-1.3.repo
+- name: install Elasticsearch
+  yum: name=elasticsearch state=present
+- name: chkconfig on
+  command: chkconfig elasticsearch on
+- name: elasticsearch start
+  service: name=elasticsearch state=started
