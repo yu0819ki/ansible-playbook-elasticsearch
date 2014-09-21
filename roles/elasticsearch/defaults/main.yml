@@ -1,0 +1,6 @@
+---
+elasticsearch_home_dir: "/usr/share/elasticsearch/"
+elasticsearch_plugin_head_name: "head"
+elasticsearch_plugin_head_path: "mobz/elasticsearch-head"
+elasticsearch_plugin_analysis_kuromoji_name: "analysis-kuromoji"
+elasticsearch_plugin_analysis_kuromoji_path: "elasticsearch/elasticsearch-analysis-kuromoji/2.3.0"
