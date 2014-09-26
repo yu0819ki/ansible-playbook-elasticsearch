@@ -16,13 +16,13 @@
   ignore_errors: True
 - name: install head plugin
   shell: bin/plugin --install {{ elasticsearch_plugin_head_path }} chdir={{ elasticsearch_home_dir }}
-  when: is_head_plugin_installed.rc != 0
+  when: is_head_plugin_installed is defined and is_head_plugin_installed.rc != 0
 - name: is kuromoji plugin installed?
   shell: bin/plugin --list | grep '\- {{ elasticsearch_plugin_analysis_kuromoji_name }}' chdir={{ elasticsearch_home_dir }}
   register: is_kuromoji_plugin_installed
   ignore_errors: True
 - name: install kuromoji plugin
   shell: bin/plugin --install {{ elasticsearch_plugin_analysis_kuromoji_path }} chdir={{ elasticsearch_home_dir }}
-  when: is_kuromoji_plugin_installed.rc != 0
+  when: is_kuromoji_plugin_installed is defined and is_kuromoji_plugin_installed.rc != 0
 - name: elasticsearch start
   service: name=elasticsearch state=started
